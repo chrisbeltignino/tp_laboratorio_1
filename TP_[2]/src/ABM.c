@@ -79,7 +79,8 @@ int addPassenger(Passenger* list, int len, int id, char name[], char lastName[],
 			printf("\nEl pasajero a AGREGAR es...\n\n"
 				   " ___________________________________________________________________________________________________________________\n"
 				   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-				   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
+				   "|=====|===============|===============|=============|=====================|====================|====================|",
+				     "ID",     "Nombre",      "Apellido",     "Precio",   "Tipo de pasajero",    "Estado de Vuelo",   "Codigo de vuelo");
 			mostrarUnPasajero(list[indice]);
 			printf("\n|_____|_______________|_______________|_____________|_____________________|____________________|____________________|\n");
 
@@ -184,7 +185,8 @@ int modificoPasajero(Passenger* list, int len, Type* typeP, Status* status)
 			printf("\nEl pasajero a MODOFICAR es...\n"
 				   " ___________________________________________________________________________________________________________________\n"
 				   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-				   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
+				   "|=====|===============|===============|=============|=====================|====================|====================|",
+				   	 "ID",     "Nombre",      "Apellido",    "Precio",     "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo");
 			mostrarUnPasajeroConDescripcion(list[index], typeP, status);
 			printf("\n|_____|_______________|_______________|_____________|_____________________|____________________|____________________|\n");
 
@@ -249,8 +251,9 @@ int modificoPasajero(Passenger* list, int len, Type* typeP, Status* status)
 				printf("\nEl pasajero a modificar va a quedar de la siguiente manera:...\n"
 					   " ___________________________________________________________________________________________________________________\n"
 					   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-					   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
-				mostrarUnPasajeroConDescripcion(list[index], typeP, status);
+					   "|=====|===============|===============|=============|=====================|====================|====================|",
+					      "ID",   "Nombre",       "Apellido",     "Precio",    "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo");
+				mostrarUnPasajeroConDescripcion(aux, typeP, status);
 				printf("\n|_____|_______________|_______________|_____________|_____________________|____________________|____________________|\n");
 
 				if(!verificarConfirmacion("\nIngrese 's' para confirmar la modificacion del pasajero: "))
@@ -333,7 +336,8 @@ int removePassenger(Passenger* list, int len, Type* typeP, Status* status)
 		printf("\nEl pasajero que quiere ELIMINAR es: \n"
 			   " ___________________________________________________________________________________________________________________\n"
 			   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-			   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
+			   "|=====|===============|===============|=============|=====================|====================|====================|",
+			     "ID",     "Nombre",      "Apellido",    "Precio",     "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo");
 		mostrarUnPasajeroConDescripcion(list[index], typeP, status);
 		printf("\n|_____|_______________|_______________|_____________|_____________________|____________________|____________________|\n");
 		if(!verificarConfirmacion("\nIngrese 's' para confirmar la baja del pasajero: "))

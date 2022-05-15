@@ -171,7 +171,8 @@ int printPassenger(Passenger* list, int len ,Type* typeP, Status* status)
 	printf("\nMostrando lista de pasajeros...\n\n"
 		   " ______________________________________________________________________________________________________________________________\n"
 		   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|%-10s|\n"
-		   "|=====|===============|===============|=============|=====================|====================|====================|==========|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo", "ESTADO");
+		   "|=====|===============|===============|=============|=====================|====================|====================|==========|",
+		      "ID",    "Nombre",      "Apellido",     "Precio",    "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo",  "ESTADO");
 	for(i=0; i<len; i++)
 	{
 		if(list[i].isEmpty == OCUPADO)
@@ -189,7 +190,8 @@ void mostrarListaPasajerosActivos(Passenger* list,int len)
 	printf("\nMostrando lista de pasajeros ACTIVOS...\n\n"
 		   " ___________________________________________________________________________________________________________________\n"
 		   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-		   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
+		   "|=====|===============|===============|=============|=====================|====================|====================|",
+		      "ID",    "Nombre",      "Apellido",     "Precio",    "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo");
 	for(i=0; i<len; i++)
 	{
 		if(list[i].isEmpty == OCUPADO && list[i].idStatusFlight == 1)
@@ -206,7 +208,8 @@ void mostrarListaPasajeros(Passenger* list,int len)
 	printf("\nMostrando lista de pasajeros...\n\n"
 		   " ___________________________________________________________________________________________________________________\n"
 		   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-		   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
+		   "|=====|===============|===============|=============|=====================|====================|====================|",
+		     "ID",     "Nombre",      "Apellido",     "Precio",    "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo");
 	for(i=0; i<len; i++)
 	{
 		if(list[i].isEmpty == OCUPADO)
@@ -275,7 +278,8 @@ void mostrarTipoPasajero(Type typeP[], int len)
 
 	printf(" ___________________________\n"
 		   "|%-5s|%-21s|\n"
-		   "|=====|=====================|\n", "ID", "Tipo de pasajero");
+		   "|=====|=====================|\n",
+		     "ID",   "Tipo de pasajero");
 
     for(i=0;i<len;i++)
     {
@@ -289,7 +293,8 @@ void mostrarEstadoDeVuelo(Status status[], int len)
     int i;
 	printf(" __________________________\n"
 		   "|%-5s|%-20s|\n"
-		   "|=====|====================|\n", "ID", "Estado de Vuelo");
+		   "|=====|====================|\n",
+		      "ID",  "Estado de Vuelo");
 
     for(i=0;i<len;i++)
     {
@@ -409,7 +414,8 @@ void mostrarPromedio(Passenger* list,int len, Type* typeP, int lenT, Status* sta
 	printf("\nPasajeros con promedio mayor al precio de pasaje...\n"
 		   " ___________________________________________________________________________________________________________________\n"
 		   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
-		   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
+		   "|=====|===============|===============|=============|=====================|====================|====================|",
+		      "ID",   "Nombre",       "Apellido",    "Precio",     "Tipo de pasajero",   "Estado de Vuelo",   "Codigo de vuelo");
 	for(int i = 0; i < len; i++)
 	{
 		for(int j = 0;j<lenT;j++)
