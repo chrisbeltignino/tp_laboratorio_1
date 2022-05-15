@@ -188,13 +188,24 @@ int modificoPasajero(Passenger* list, int len, Type* typeP, Status* status)
 			mostrarUnPasajeroConDescripcion(list[index], typeP, status);
 			printf("\n|_____|_______________|_______________|_____________|_____________________|____________________|____________________|\n");
 
-			opcion = menuDeOpciones("\nIngrese que desea modificar: \n"
-									"\n1)Nombre  "
-									"\n2)Apellido "
-									"\n3)Precio "
-									"\n4)Tipo de Pasajero "
-									"\n5)Codigo de vuelo "
-									"\n6)No quiero modificar nada.\n");
+			pedirEntero(&opcion, "-------------------------------------\n"
+								 "1. Nombre Pasajero\n"
+								 "2. Apellido Pasajero\n"
+								 "3. Precio Pasajero\n"
+								 "4. Tipo de Pasajero Pasajero\n"
+								 "5. Codigo de vuelo Pasajero\n"
+								 "6. No quiero modificar nada\n"
+								 "-------------------------------------\n"
+								 "Ingrese que desea modificar: ",
+								 "-------------------------------------\n"
+								 "1. Nombre Pasajero\n"
+								 "2. Apellido Pasajero\n"
+								 "3. Precio Pasajero\n"
+								 "4. Tipo de Pasajero Pasajero\n"
+								 "5. Codigo de vuelo Pasajero\n"
+								 "6. No quiero modificar nada\n"
+								 "-------------------------------------\n"
+								 "Opcion invalida, reingrese: ", 1, 6);
 			switch(opcion)
 			{
 			case 1:
@@ -332,7 +343,7 @@ int removePassenger(Passenger* list, int len, Type* typeP, Status* status)
 		}
 		else
 		{
-			printf("\nNo se realizo la modificacion");
+			printf("\nNo se realizo la baja");
 			retorno = -1;
 		}
 	}

@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-int menuDeOpciones(char mensaje[]);
 int verificarConfirmacion(char* mensaje);
 /**
  * @fn int pedirEntero(int*, char*, char*, min, max)
@@ -25,6 +24,14 @@ int pedirEntero(int* entero, char* mensaje, char* mensajeError, int min, int max
  * @return devuelve -1 si salio todo mal, devuelve 0 si salio todo bien
  */
 int pedirCadena(char* cadena, char* mensaje, char* mensajeError, int max);
+/**
+ * @fn int pedirCaracter(char*, char*)
+ * @brief paso un caracter, si encuentra un error envia el mensaje de error hasta ingresarlo correctamente
+ *
+ * @param input valor del caracter ingresado por el usuario
+ * @param mensaje imprime un mensaje
+ * @return devuelve -1 si salio todo mal, devuelve 0 si salio todo bien
+ */
 int pedirCaracter(char* caracter, char* mensaje);
 
 //-----------------------------------------------CHAR----------------------------------------------------

@@ -266,7 +266,6 @@ void mostrarUnPasajeroConDescripcion(Passenger list, Type* typeP, Status* status
 		printf("%-21s|",typeP[tipoPasajero].typePassenger);
 		printf("%-20s|",status[estadoVuelo].statusFlight);
 		printf("%-20s|",list.flycode);
-		printf("%-10d|",list.isEmpty);
 	}
 }
 
@@ -391,16 +390,16 @@ int sortPassengersByCode(Passenger* list, int len, int order)
 	return 0;
 }
 
-void mostrarPromedio(Passenger* listaPasajeros,int size, Type* estadoPasajero, int sizeTipo, Status* estadoVuelo, int sizeV)
+void mostrarPromedio(Passenger* list,int len, Type* typeP, int lenT, Status* status, int lenS)
 {
 	float precioTotal = 0;
 	float promedio;
 	float contadorPasajeros = 0;
-	for(int i = 0; i < size; i++)
+	for(int i = 0; i < len; i++)
 	{
-		if(listaPasajeros[i].isEmpty == OCUPADO)
+		if(list[i].isEmpty == OCUPADO)
 		{
-		 precioTotal = listaPasajeros[i].price + precioTotal;
+		 precioTotal = list[i].price + precioTotal;
 		 contadorPasajeros++;
 		}
 	}
@@ -411,15 +410,15 @@ void mostrarPromedio(Passenger* listaPasajeros,int size, Type* estadoPasajero, i
 		   " ___________________________________________________________________________________________________________________\n"
 		   "|%-5s|%-15s|%-15s|%-13s|%-21s|%-20s|%-20s|\n"
 		   "|=====|===============|===============|=============|=====================|====================|====================|", "ID", "Nombre", "Apellido", "Precio", "Tipo de pasajero", "Estado de Vuelo", "Codigo de vuelo");
-	for(int i = 0; i < size; i++)
+	for(int i = 0; i < len; i++)
 	{
-		for(int j = 0;j<sizeTipo;j++)
+		for(int j = 0;j<lenT;j++)
 		{
-			for(int z = 0;z<sizeV;z++)
+			for(int z = 0;z<lenS;z++)
 			{
-				if(listaPasajeros[i].isEmpty == OCUPADO && listaPasajeros[i].price > promedio && listaPasajeros[i].idType ==  estadoPasajero[j].idType && listaPasajeros[i].idStatusFlight == estadoVuelo[z].idStatusFlight)
+				if(list[i].isEmpty == OCUPADO && list[i].price > promedio && list[i].idType ==  typeP[j].idType && list[i].idStatusFlight == status[z].idStatusFlight)
 				{
-					mostrarUnPasajeroConTodo(listaPasajeros[i], estadoPasajero[j], estadoVuelo[z]);
+					mostrarUnPasajeroConTodo(list[i], typeP[j], status[z]);
 				}
 			}
 		}

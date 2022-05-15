@@ -4,15 +4,6 @@
 #include <ctype.h>
 #include "inputs.h"
 
-int menuDeOpciones(char mensaje[])
-{
-    int opcion;
-    printf("%s", mensaje);
-    scanf("%d", &opcion);
-
-    return opcion;
-}
-
 int verificarConfirmacion(char* mensaje)
 {
 	int retorno = -1;
