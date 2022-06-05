@@ -120,7 +120,7 @@ int main()
 					flagSaveTxt = REALIZADO;
 				}else
 				{
-					printf("No hay empleados para guardar");
+					printf("No hay pasajeros para guardar");
 				}
 			break;
             case 9:
@@ -130,7 +130,7 @@ int main()
 					flagSaveBin=REALIZADO;
 				}else
 				{
-					printf("No hay empleados para guardar");
+					printf("No hay pasajeros para guardar");
 				}
 			break;
             case 10:

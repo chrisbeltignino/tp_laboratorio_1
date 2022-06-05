@@ -875,7 +875,6 @@ int Passenger_sortPassenger(LinkedList* clon)
 			break;
 			case 2:
 				Passenger_caseCompareMaxPromedio(clon);
-
 				system("pause");
 			break;
 			case 3:
@@ -890,22 +889,7 @@ int Passenger_sortPassenger(LinkedList* clon)
 	}while(stricmp(confirmar,"si"));
 	return retorno;
 }
-/*
-void Passenger_caseCompareMaxPromedio(LinkedList* clon)
-{
-	int orden;
 
-	orden = Passenger_subMenuOrden();
-
-	if(!ll_sort(clon,Passenger_compareMaxPromedio,orden))
-	{
-		if(orden)
-		{
-			printf("Se ha ordenado la lista ascendente\n");
-		}
-	}
-}
-*/
 void Passenger_caseCompareApellido_Tipo(LinkedList* clon)
 {
 	int orden;
@@ -974,7 +958,6 @@ int Passenger_caseCompareMaxPromedio(LinkedList* clon)
     			}
 			}
     	}
-    	//controller_ListPassenger(clon);
 	}
 
 	return resultado;
