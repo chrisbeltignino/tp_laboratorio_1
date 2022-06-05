@@ -875,7 +875,7 @@ int Passenger_sortPassenger(LinkedList* clon)
 			break;
 			case 2:
 				Passenger_caseCompareMaxPromedio(clon);
-				//controller_ListPassenger(clon);
+
 				system("pause");
 			break;
 			case 3:
@@ -884,12 +884,13 @@ int Passenger_sortPassenger(LinkedList* clon)
 			break;
 			case 5:
 				utn_getString("\n¿Esta seguro que desea salir?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,confirmar);
+				ll_deleteLinkedList(clon);
 			break;
 		}
 	}while(stricmp(confirmar,"si"));
 	return retorno;
 }
-
+/*
 void Passenger_caseCompareMaxPromedio(LinkedList* clon)
 {
 	int orden;
@@ -904,7 +905,7 @@ void Passenger_caseCompareMaxPromedio(LinkedList* clon)
 		}
 	}
 }
-
+*/
 void Passenger_caseCompareApellido_Tipo(LinkedList* clon)
 {
 	int orden;
@@ -926,21 +927,16 @@ void Passenger_caseCompareApellido_Tipo(LinkedList* clon)
 	}
 }
 
-int Passenger_compareMaxPromedio(void* pasajero1, void* pasajero2)
+int Passenger_caseCompareMaxPromedio(LinkedList* clon)
 {
 	int resultado = 0;//si son iguales
 	float precioTotal = 0;
 	int precio;
-	int precio1;
-	int precio2;
 	float precioFloat;
 	float promedio;
 	float contadorPasajeros = 0;
 	int len;
-	LinkedList* clon;
 	Passenger* pasajero;
-	Passenger* p1 = NULL;
-	Passenger* p2 = NULL;
 
 	len = ll_len(clon);
 
@@ -964,31 +960,21 @@ int Passenger_compareMaxPromedio(void* pasajero1, void* pasajero2)
 		printf( "\nPrecio total de los pasajes: %.2f"
 				"\nPrecio promedio de los pasajes: %.2f\n",precioTotal,promedio);
 
-		if(pasajero1!=NULL && pasajero2!=NULL)
-		{
-			p1 = (Passenger*) pasajero1;
-			p1 = (Passenger*) pasajero2;
+    	for(int j=0; j<len; j++)
+    	{
+    		pasajero = (Passenger*) ll_get(clon,j);
 
-			if((!Passenger_getPrecio(p1,&precio1)) && (!Passenger_getPrecio(p2,&precio2)))
+    		if(!Passenger_getPrecio(pasajero,&precio))
 			{
-				if(precio1 > promedio && precio2 > promedio)//mayores
-				{
-					precioFloat = (float)precio;
-					precioTotal = precioFloat + precioTotal;
-					contadorPasajeros++;
-					resultado = 1;
-				}else
-				{
-					if(precio1 < promedio)//menores
-					{
-						resultado = -1;
-					}
-				}
-				promedio = precioTotal/contadorPasajeros;
-				printf( "\nPrecio total de los pasajes: %.2f"
-						"\nPrecio promedio de los pasajes: %.2f\n",precioTotal,promedio);
+    			if(precio > promedio)
+    			{
+					ll_set(clon,j,pasajero);
+					Passenger_printOnePassenger(pasajero);
+					resultado = 0;
+    			}
 			}
-		}
+    	}
+    	//controller_ListPassenger(clon);
 	}
 
 	return resultado;

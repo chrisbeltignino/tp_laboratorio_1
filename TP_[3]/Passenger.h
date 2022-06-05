@@ -70,13 +70,11 @@ int Passenger_getEstadoVuelo(Passenger* this,char* estadoVuelo);
 
 int Passenger_sortPassenger(LinkedList* clon);
 void Passenger_caseCompareApellido_Tipo(LinkedList* clon);
-int Passenger_caseMaxPromedio(LinkedList* clon);
-void Passenger_caseCompareMaxPromedio(LinkedList* clon);
+int Passenger_caseCompareMaxPromedio(LinkedList* clon);
 void Passenger_caseCompareCodigo_Estado(LinkedList* clon);
 
 int Passenger_compareByApellido(void* pasajero1, void* pasajero2);
 int Passenger_compareByTipoPasajero(void* pasajero1, void* pasajero2);
-int Passenger_compareMaxPromedio(void* pasajero1, void* pasajero2);
 int Passenger_compareByCodigoVuelo(void* pasajero1, void* pasajero2);
 int Passenger_compareByEstadoVuelo(void* pasajero1, void* pasajero2);
 
