@@ -24,6 +24,7 @@ Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* apellidoStr
 int Passenger_add(LinkedList* listaPasajeros);
 int Passenger_remove(LinkedList* listaPasajeros);
 int Passenger_modify(LinkedList* listaPasajeros);
+
 int Passenger_caseNombre(LinkedList* listaPasajeros, int index, Passenger auxiliar);
 int Passenger_caseApellido(LinkedList* listaPasajeros, int index, Passenger auxiliar);
 int Passenger_casePrecio(LinkedList* listaPasajeros, int index, Passenger auxiliar);

@@ -49,18 +49,15 @@ int Passenger_setVerifyChar(Passenger* this, char* idStr,char* nombreStr,char* a
 {
 	int retorno = -1;
 
-	if(this!=NULL && idStr!=NULL && nombreStr!=NULL && apellidoStr!=NULL && precioStr!=NULL && tipoPasajeroStr!=NULL && codigoVueloStr!=NULL && estadoVuelo!=NULL)
+	if((!(Passenger_setId(this,atoi(idStr))) &&
+		!(Passenger_setNombre(this,nombreStr)) &&
+		!(Passenger_setApellido(this,apellidoStr)) &&
+		!(Passenger_setPrecio(this,atoi(precioStr))) &&
+		!(Passenger_setCodigoVuelo(this,codigoVueloStr)) &&
+		!(Passenger_setTipoPasajero(this,tipoPasajeroStr))  &&
+		!(Passenger_setEstadoVuelo(this,estadoVuelo))))
 	{
-		if((!(Passenger_setId(this,atoi(idStr))) &&
-			!(Passenger_setNombre(this,nombreStr)) &&
-			!(Passenger_setApellido(this,apellidoStr)) &&
-			!(Passenger_setPrecio(this,atoi(precioStr))) &&
-			!(Passenger_setCodigoVuelo(this,codigoVueloStr)) &&
-			!(Passenger_setTipoPasajero(this,tipoPasajeroStr))  &&
-			!(Passenger_setEstadoVuelo(this,estadoVuelo))))
-		{
-			retorno = 0;
-		}
+		retorno = 0;
 	}
 
 	return retorno;
