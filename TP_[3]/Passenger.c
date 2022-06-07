@@ -867,6 +867,7 @@ int Passenger_sortPassenger(LinkedList* clon)
 		{
 			case 1:
 				Passenger_caseCompareApellido_Tipo(clon);
+				printf("Ordenando...\n");
 				controller_ListPassenger(clon);
 				system("pause");
 			break;
@@ -876,6 +877,7 @@ int Passenger_sortPassenger(LinkedList* clon)
 			break;
 			case 3:
 				Passenger_caseCompareCodigo_Estado(clon);
+				printf("Ordenando...\n");
 				controller_ListPassenger(clon);
 			break;
 			case 5:
@@ -939,7 +941,8 @@ int Passenger_caseCompareMaxPromedio(LinkedList* clon)
 		}
 		promedio = precioTotal/contadorPasajeros;
 		printf( "\nPrecio total de los pasajes: %.2f"
-				"\nPrecio promedio de los pasajes: %.2f\n",precioTotal,promedio);
+				"\nPrecio promedio de los pasajes: %.2f\n\n",precioTotal,promedio);
+		printf("Ordenando...\n");
 
     	for(int j=0; j<len; j++)
     	{
