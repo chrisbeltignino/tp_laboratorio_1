@@ -134,26 +134,35 @@ int main()
 				}
 			break;
             case 10:
-            	if((flagSaveTxt==NO_REALIZADO) && (flagSaveBin==NO_REALIZADO))
-				{
-					utn_getString("\n¿Esta seguro que desea salir sin guardar?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,confirmar);
-					if(stricmp(confirmar,"si"))
+            	if(flagTxt==REALIZADO && flagBin==REALIZADO)
+            	{
+					if(flagSaveTxt==NO_REALIZADO && flagSaveBin==NO_REALIZADO)
 					{
-						utn_getInt("\n1. Guardar modo texto\n2. Guardar modo binario\n","\nRespuesta invalida, ingrese [1/2]\n",1,2,3,&option);
-						if(option==1)
+						utn_getString("\n¿Esta seguro que desea salir sin guardar?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,confirmar);
+						if(!(stricmp(confirmar,"si")))
 						{
-							controller_saveAsText("data2.csv",listaPasajeros);
-							strcpy(confirmar,"si");
-						}else
-						{
-							controller_saveAsBinary("data.bin",listaPasajeros);
-							strcpy(confirmar,"si");
+							utn_getInt("1. Guardar modo texto\n"
+									   "2. Guardar modo binario\n",
+									   "Respuesta invalida, ingrese [1/2]\n",1,2,3,&option);
+							if(option==1)
+							{
+								controller_saveAsText("data2.csv",listaPasajeros);
+								strcpy(confirmar,"si");
+							}else
+							{
+								controller_saveAsBinary("data.bin",listaPasajeros);
+								strcpy(confirmar,"si");
+							}
 						}
+					}else
+					{
+						strcpy(confirmar,"si");
 					}
-				}else
-				{
-					strcpy(confirmar,"si");
-				}
+            	}else
+            	{
+            		strcpy(confirmar,"no");
+            	}
+
             break;
         }
     }while(stricmp(confirmar,"si"));
