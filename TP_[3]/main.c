@@ -32,6 +32,7 @@ int main()
 	setbuf(stdout,NULL);
     int option = 0;
     char confirmar[4];
+	int id = 1000;
     int flagTxt = NO_REALIZADO;
     int flagBin = NO_REALIZADO;
 	int flagSaveTxt = NO_REALIZADO;
@@ -74,7 +75,7 @@ int main()
             	system("pause");
             break;
             case 3:
-            	controller_addPassenger(listaPasajeros);
+            	controller_addPassenger(listaPasajeros,&id);
 			break;
             case 4:
 				if(!ll_isEmpty(listaPasajeros))
@@ -117,6 +118,7 @@ int main()
 				if(!ll_isEmpty(listaPasajeros))
 				{
 					controller_saveAsText("data.csv",listaPasajeros);
+					controller_saveAsTextID("ids.csv",listaPasajeros);
 					flagSaveTxt = REALIZADO;
 				}else
 				{
@@ -127,42 +129,36 @@ int main()
 				if(!ll_isEmpty(listaPasajeros))
 				{
 					controller_saveAsBinary("data.bin",listaPasajeros);
-					flagSaveBin=REALIZADO;
+					controller_saveAsTextID("ids.csv",listaPasajeros);
+					flagSaveBin = REALIZADO;
 				}else
 				{
 					printf("No hay pasajeros para guardar");
 				}
 			break;
             case 10:
-            	if(flagTxt==REALIZADO && flagBin==REALIZADO)
-            	{
-					if(flagSaveTxt==NO_REALIZADO && flagSaveBin==NO_REALIZADO)
+            	if(flagSaveTxt==NO_REALIZADO && flagSaveBin==NO_REALIZADO)
+				{
+					utn_getString("\n¿Esta seguro que desea salir sin guardar?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,confirmar);
+					if((stricmp(confirmar,"si")))
 					{
-						utn_getString("\n¿Esta seguro que desea salir sin guardar?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,confirmar);
-						if(!(stricmp(confirmar,"si")))
+						utn_getInt("1. Guardar modo texto\n"
+								   "2. Guardar modo binario\n",
+								   "Respuesta invalida, ingrese [1/2]\n",1,2,3,&option);
+						if(option==1)
 						{
-							utn_getInt("1. Guardar modo texto\n"
-									   "2. Guardar modo binario\n",
-									   "Respuesta invalida, ingrese [1/2]\n",1,2,3,&option);
-							if(option==1)
-							{
-								controller_saveAsText("data2.csv",listaPasajeros);
-								strcpy(confirmar,"si");
-							}else
-							{
-								controller_saveAsBinary("data.bin",listaPasajeros);
-								strcpy(confirmar,"si");
-							}
+							controller_saveAsText("data.csv",listaPasajeros);
+							strcpy(confirmar,"si");
+						}else
+						{
+							controller_saveAsBinary("data.bin",listaPasajeros);
+							strcpy(confirmar,"si");
 						}
-					}else
-					{
-						strcpy(confirmar,"si");
 					}
-            	}else
-            	{
-            		strcpy(confirmar,"no");
-            	}
-
+				}else
+				{
+					strcpy(confirmar,"si");
+				}
             break;
         }
     }while(stricmp(confirmar,"si"));

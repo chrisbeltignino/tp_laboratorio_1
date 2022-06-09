@@ -86,3 +86,34 @@ int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 
     return retorno;
 }
+
+int parser_IdFromText(FILE* pFile , LinkedList* pArrayListPassenger, int* id)
+{
+	int retorno = -1;
+	char idTxt[128];
+	int idInt;
+	int cantidad = 0;
+
+	if(pFile!=NULL && pArrayListPassenger!=NULL)
+	{
+		cantidad = fscanf(pFile,"%[^\n]\n",idTxt);
+		do
+		{
+			cantidad = fscanf(pFile,"%[^\n]\n",idTxt);
+
+			if(cantidad==1)
+			{
+				idInt = atoi(idTxt);
+
+				if(idInt>*id)
+				{
+					*id=idInt;
+					retorno = 0;
+				}
+			}
+		}
+		while(!feof(pFile));
+	}
+
+    return retorno;
+}

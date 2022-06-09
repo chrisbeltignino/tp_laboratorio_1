@@ -73,6 +73,36 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
     return retorno;
 }
 
+/** \brief Carga los IDs de los pasajeros desde el archivo ids.cvs (modo texto)
+ *
+ * \param path char*
+ * \param pArrayListPassenger LinkedList*
+ * \param id int*
+ * \return int
+ *
+ */
+int controller_loadFromTextID(char* path , LinkedList* pArrayListPassenger, int* id)
+{
+	int retorno = -1;
+	FILE* pArchivo;
+
+	if(path!=NULL && pArrayListPassenger!=NULL)
+	{
+		pArchivo = fopen(path,"r");
+
+		if(pArchivo!= NULL)
+		{
+			if(!parser_IdFromText(pArchivo,pArrayListPassenger,id))
+			{
+				retorno = 0;
+			}
+		}
+		fclose(pArchivo);
+	}
+
+    return retorno;
+}
+
 /** \brief Alta de pasajero
  *
  * \param path char*
@@ -80,21 +110,25 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
  * \return int
  *
  */
-int controller_addPassenger(LinkedList* pArrayListPassenger)
+int controller_addPassenger(LinkedList* pArrayListPassenger, int* id)
 {
 	int retorno = -1;
+	int auxID;
 	int opcion;
 	int i=0;
 
 	if(pArrayListPassenger!=NULL)
 	{
+		controller_loadFromTextID("ids.csv", pArrayListPassenger, id);
+		auxID=*id;
 		printf("ALTA DE PASAJEROS\n");
 		utn_getInt("\n¿Cuantos pasajeros desea dar de alta?: ","\nError, reingrese: ",1,10,3,&opcion);
 		do
 		{
-			if(!Passenger_add(pArrayListPassenger))
+			if(!Passenger_add(pArrayListPassenger, &auxID))
 			{
-				retorno=0;
+				*id = auxID;
+				retorno = 0;
 			}
 			i++;
 		}while(opcion!=i);
@@ -104,7 +138,7 @@ int controller_addPassenger(LinkedList* pArrayListPassenger)
 			printf("Se ha dado de alta correctamente");
 		}else
 		{
-			printf("No se ha dado de alta un nuevo empleado");
+			printf("No se ha dado de alta un nuevo pasajero");
 		}
 	}
     return retorno;
@@ -307,7 +341,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 				if(aux!=NULL)
 				{
 					fwrite(aux,sizeof(Passenger),1,pArchivo);
-					retorno=0;
+					retorno = 0;
 				}
 			}
 		}else
@@ -324,3 +358,25 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
     return retorno;
 }
 
+int controller_saveAsTextID(char* path , LinkedList* pArrayListPassenger)
+{
+	int retorno = -1;
+	int idMayor = 0;
+	FILE* pArchivo;
+
+	if(path!=NULL && pArrayListPassenger!=NULL)
+	{
+		idMayor = Passenger_ObtenerMayorId(pArrayListPassenger);
+		pArchivo = fopen(path,"w");
+
+		if(pArchivo!= NULL)
+		{
+			fprintf(pArchivo,"Ultimo ID:\n");
+			fprintf(pArchivo,"%d\n",idMayor);
+			retorno = 0;
+		}
+		fclose(pArchivo);
+	}
+
+	return retorno;
+}

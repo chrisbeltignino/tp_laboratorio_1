@@ -8,7 +8,7 @@ int Menu()
 {
 	int opciones;
 	pedirEntero(&opciones,
-				"----------------------------->-MENU MODIFICACIONES-<----------------------------\n"
+				"------------------------------------>-MENU-<------------------------------------\n"
 				"1. Cargar los datos de los pasajeros desde el archivo data.csv (modo texto).\n"
 				"2. Cargar los datos de los pasajeros desde el archivo data.csv (modo binario).\n"
 				"3. Alta de pasajero\n"

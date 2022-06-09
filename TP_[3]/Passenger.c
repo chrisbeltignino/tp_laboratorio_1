@@ -163,7 +163,7 @@ int Passenger_findID(LinkedList* listaPasajeros, int id)
 	return index;
 }
 
-int Passenger_add(LinkedList* listaPasajeros)
+int Passenger_add(LinkedList* listaPasajeros, int* id)
 {
 	int retorno = -1;
 	char respuesta[4];
@@ -176,14 +176,16 @@ int Passenger_add(LinkedList* listaPasajeros)
 	char auxiliarEstadoVuelo[128];
 	Passenger* auxPasajero = NULL;
 
-	if(listaPasajeros!=NULL)
+	if(listaPasajeros!=NULL && id!=NULL)
 	{
 		auxPasajero = Passenger_new();
 
 		if(auxPasajero!=NULL)
 		{
-			auxiliarID = Passenger_ObtenerMayorId(listaPasajeros);
+			auxiliarID = *id;
 			auxiliarID+=1;
+			//auxiliarID = Passenger_ObtenerMayorId(listaPasajeros);
+			//auxiliarID+=1;
 			printf("\nEl nuevo pasajero obtendra la ID: %d\n", auxiliarID);
 			if((!(utn_getString("\nIngrese el nombre: ","\nError, reingrese: ",128,3,auxiliarNombre)) &&
 				!(utn_getString("\nIngrese el apellido: ","\nError, reingrese: ",128,3,auxiliarApellido)) &&
@@ -205,6 +207,7 @@ int Passenger_add(LinkedList* listaPasajeros)
 					if(!(stricmp(respuesta,"si")))
 					{
 						ll_add(listaPasajeros, auxPasajero);
+						controller_saveAsTextID("ids.csv",listaPasajeros);
 						retorno=0;
 					}else
 					{

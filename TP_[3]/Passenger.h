@@ -21,22 +21,22 @@ typedef struct
 
 Passenger* Passenger_new();
 Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* apellidoStr,char* precioStr,char* codigoVueloStr,char* tipoPasajeroStr,char* estadoVuelo);
-int Passenger_add(LinkedList* listaPasajeros);
+int Passenger_add(LinkedList* listaPasajeros, int* id);
 int Passenger_remove(LinkedList* listaPasajeros);
 int Passenger_modify(LinkedList* listaPasajeros);
+void Passenger_delete(Passenger* this);
 
 int Passenger_caseNombre(LinkedList* listaPasajeros, int index, Passenger auxiliar);
 int Passenger_caseApellido(LinkedList* listaPasajeros, int index, Passenger auxiliar);
 int Passenger_casePrecio(LinkedList* listaPasajeros, int index, Passenger auxiliar);
 int Passenger_caseTipoPasajero(LinkedList* listaPasajeros, int index, Passenger auxiliar);
 int Passenger_caseCodigoVuelo(LinkedList* listaPasajeros, int index, Passenger auxiliar);
+
 int Passenger_modifyNombre(LinkedList* listaPasajeros, int index, char* auxNombre);
 int Passenger_modifyApellido(LinkedList* listaPasajeros, int index, char* auxApellido);
 int Passenger_modifyPrecio(LinkedList* listaPasajeros, int index, int auxPrecio);
 int Passenger_modifyTipoPasajero(LinkedList* listaPasajeros, int index, char* auxTipoPasajero);
 int Passenger_modifyCodigoVuelo(LinkedList* listaPasajeros, int index, char* auxCodigoVuelo);
-
-void Passenger_delete(Passenger* this);
 
 int Passenger_printOnePassenger(Passenger* this);
 int Passenger_printList(LinkedList* listaPasajeros);
