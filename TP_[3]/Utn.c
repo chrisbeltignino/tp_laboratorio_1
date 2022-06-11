@@ -56,11 +56,24 @@ int pedirCadena(char* mensaje, char* mensajeError, int max, char* cadena)
 			tam = strlen(buffer);
 		}
 
+		Set_CodigosMayus(buffer, tam);
+
 		strcpy(cadena, buffer);
 		retorno = 0;
 	}
 
 	return retorno;
+}
+
+void Set_CodigosMayus(char* buffer, int tam)
+{
+    for(int i = 0;i<tam;i++)
+    {
+        if(*(buffer+i) > 96 && *(buffer+i) < 123)
+        {
+            *(buffer+i) = toupper(*(buffer+i));
+        }
+    }
 }
 
 //-----------------------------------CHAR-----------------------------------

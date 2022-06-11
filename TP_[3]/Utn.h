@@ -33,6 +33,8 @@ int pedirEntero(int* entero, char* mensaje, char* mensajeError, int min, int max
  */
 int pedirCadena(char* mensaje, char* mensajeError, int max, char* cadena);
 
+void Set_CodigosMayus(char* buffer, int tam);
+
 //-----------------------------------------------CHAR----------------------------------------------------
 /**
  * @fn int SizeString(char[])

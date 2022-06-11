@@ -72,6 +72,8 @@ int Passenger_getEstadoVuelo(Passenger* this,char* estadoVuelo);
 int Passenger_sortPassenger(LinkedList* clon);
 void Passenger_caseCompareApellido_Tipo(LinkedList* clon);
 int Passenger_caseCompareMaxPromedio(LinkedList* clon);
+int Passenger_TotalPasajesYPromedio(LinkedList* clon, Passenger* pasajero, int len);
+int Passenger_MaxPrecio(LinkedList* clon, Passenger* pasajero, float promedio, int len);
 void Passenger_caseCompareCodigo_Estado(LinkedList* clon);
 
 int Passenger_compareByApellido(void* pasajero1, void* pasajero2);

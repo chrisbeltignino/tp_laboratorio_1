@@ -148,10 +148,12 @@ int main()
 						if(option==1)
 						{
 							controller_saveAsText("data.csv",listaPasajeros);
+							controller_saveAsTextID("ids.csv",listaPasajeros);
 							strcpy(confirmar,"si");
 						}else
 						{
 							controller_saveAsBinary("data.bin",listaPasajeros);
+							controller_saveAsTextID("ids.csv",listaPasajeros);
 							strcpy(confirmar,"si");
 						}
 					}

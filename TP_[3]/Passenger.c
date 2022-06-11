@@ -187,12 +187,12 @@ int Passenger_add(LinkedList* listaPasajeros, int* id)
 			//auxiliarID = Passenger_ObtenerMayorId(listaPasajeros);
 			//auxiliarID+=1;
 			printf("\nEl nuevo pasajero obtendra la ID: %d\n", auxiliarID);
-			if((!(utn_getString("\nIngrese el nombre: ","\nError, reingrese: ",128,3,auxiliarNombre)) &&
-				!(utn_getString("\nIngrese el apellido: ","\nError, reingrese: ",128,3,auxiliarApellido)) &&
+			if((!(utn_getString("\nIngrese el nombre: ","\nError, reingrese: ",50,3,auxiliarNombre)) &&
+				!(utn_getString("\nIngrese el apellido: ","\nError, reingrese: ",50,3,auxiliarApellido)) &&
 				!(utn_getInt("\nIngrese precio: ","\nError, reingrese: ",1,1000000,3,&auxiliarPrecio)) &&
-				!(pedirCadena("\nIngrese el codigo de vuelo: ","\nError, reingrese: ",128,auxiliarCodigoVuelo)) &&
-				!(utn_getString("\nIngrese el tipo de pasajero: ","\nError, reingrese: ",128,3,auxiliarTipoPasajero)) &&
-				!(utn_getString("\nIngrese el estado de vuelo: ","\nError, reingrese: ",128,3,auxiliarEstadoVuelo))))
+				!(pedirCadena("\nIngrese el codigo de vuelo: ","\nError, reingrese: ",10,auxiliarCodigoVuelo)) &&
+				!(utn_getString("\nIngrese el tipo de pasajero: ","\nError, reingrese: ",20,3,auxiliarTipoPasajero)) &&
+				!(utn_getString("\nIngrese el estado de vuelo: ","\nError, reingrese: ",20,3,auxiliarEstadoVuelo))))
 			{
 				SizeString(auxiliarNombre);
 				SizeString(auxiliarApellido);
@@ -413,7 +413,7 @@ int Passenger_caseNombre(LinkedList* listaPasajeros, int index, Passenger auxili
 	if(listaPasajeros!=NULL && index!=-1)
 	{
 		printf("\t****MODIFICAR NOMBRE****\t\n");
-		utn_getString("Ingrese el nuevo nombre\n","Error, nombre invalido\n",128,3,auxNombre);
+		utn_getString("Ingrese el nuevo nombre\n","Error, nombre invalido\n",50,3,auxNombre);
 		SizeString(auxNombre);
 
 		strcpy(auxiliar.nombre,auxNombre);
@@ -442,7 +442,7 @@ int Passenger_caseApellido(LinkedList* listaPasajeros, int index, Passenger auxi
 	if(listaPasajeros!=NULL && index!=-1)
 	{
 		printf("\t****MODIFICAR APELLIDO****\t\n");
-		utn_getString("Ingrese el nuevo apellido\n","Error, apellido invalido\n",128,3,auxApellido);
+		utn_getString("Ingrese el nuevo apellido\n","Error, apellido invalido\n",50,3,auxApellido);
 		SizeString(auxApellido);
 
 		strcpy(auxiliar.nombre,auxApellido);
@@ -496,7 +496,7 @@ int Passenger_caseTipoPasajero(LinkedList* listaPasajeros, int index, Passenger 
 	if(listaPasajeros!=NULL && index!=-1)
 	{
 		printf("\t****MODIFICAR TIPO DE PASAJERO****\t\n");
-		utn_getString("Ingrese el nuevo tipo de pasajero\n","Error, tipo de pasajero invalido\n",128,3,auxTipoPasajero);
+		utn_getString("Ingrese el nuevo tipo de pasajero\n","Error, tipo de pasajero invalido\n",20,3,auxTipoPasajero);
 		SizeString(auxTipoPasajero);
 
 		strcpy(auxiliar.nombre,auxTipoPasajero);
@@ -526,7 +526,7 @@ int Passenger_caseCodigoVuelo(LinkedList* listaPasajeros, int index, Passenger a
 	{
 		printf("\t****MODIFICAR CODIGO DE VUELO****\t\n");
 
-		pedirCadena("Ingrese el nuevo codigo de vuelo\n","Error, codigo de vuelo invalido\n",128,auxCodigoVuelo);
+		pedirCadena("Ingrese el nuevo codigo de vuelo\n","Error, codigo de vuelo invalido\n",10,auxCodigoVuelo);
 
 		strcpy(auxiliar.nombre,auxCodigoVuelo);
 		Passenger_printOnePassenger(&auxiliar);
@@ -915,54 +915,72 @@ void Passenger_caseCompareApellido_Tipo(LinkedList* clon)
 
 int Passenger_caseCompareMaxPromedio(LinkedList* clon)
 {
-	int resultado = 0;//si son iguales
-	float precioTotal = 0;
-	int precio;
-	float precioFloat;
+	int resultado = 0;
 	float promedio;
-	float contadorPasajeros = 0;
 	int len;
-	Passenger* pasajero;
+	Passenger* pasajero = NULL;
 
 	len = ll_len(clon);
 
 	if(len > 0)
 	{
-		for(int i=0; i<len; i++)
-		{
-			pasajero = (Passenger*) ll_get(clon,i);
-
-			if(!Passenger_getPrecio(pasajero,&precio))
-			{
-				if(precio > 0)
-				{
-					precioFloat = (float)precio;
-					precioTotal = precioFloat + precioTotal;
-					contadorPasajeros++;
-				}
-			}
-		}
-		promedio = precioTotal/contadorPasajeros;
-		printf( "\nPrecio total de los pasajes: %.2f"
-				"\nPrecio promedio de los pasajes: %.2f\n\n",precioTotal,promedio);
-		printf("Ordenando...\n");
-
-    	for(int j=0; j<len; j++)
-    	{
-    		pasajero = (Passenger*) ll_get(clon,j);
-
-    		if(!Passenger_getPrecio(pasajero,&precio))
-			{
-    			if(precio > promedio)
-    			{
-					ll_set(clon,j,pasajero);
-					Passenger_printOnePassenger(pasajero);
-					resultado = 0;
-    			}
-			}
-    	}
+		promedio = Passenger_TotalPasajesYPromedio(clon,pasajero,len);
+		system("pause");
+		Passenger_MaxPrecio(clon,pasajero,promedio,len);
+		resultado = 0;
 	}
 
+	return resultado;
+}
+
+int Passenger_TotalPasajesYPromedio(LinkedList* clon, Passenger* pasajero, int len)
+{
+	int precio;
+	float promedio;
+	float precioFloat;
+	float precioTotal = 0;
+	float contadorPasajeros = 0;
+
+	for(int i=0; i<len; i++)
+	{
+		pasajero = (Passenger*) ll_get(clon,i);
+
+		if(!Passenger_getPrecio(pasajero,&precio))
+		{
+			if(precio > 0)
+			{
+				precioFloat = (float)precio;
+				precioTotal = precioFloat + precioTotal;
+				contadorPasajeros++;
+			}
+		}
+	}
+	promedio = precioTotal/contadorPasajeros;
+	printf( "\nPrecio total de los pasajes: %.2f"
+			"\nPrecio promedio de los pasajes: %.2f\n\n",precioTotal,promedio);
+	return promedio;
+}
+
+int Passenger_MaxPrecio(LinkedList* clon, Passenger* pasajero, float promedio, int len)
+{
+	int resultado = -1;
+	int precio;
+
+	printf("Ordenando...");
+	for(int i=0; i<len; i++)
+	{
+		pasajero = (Passenger*) ll_get(clon,i);
+
+		if(!Passenger_getPrecio(pasajero,&precio))
+		{
+			if(precio > promedio)
+			{
+				ll_set(clon,i,pasajero);
+				Passenger_printOnePassenger(pasajero);
+				resultado = 0;
+			}
+		}
+	}
 	return resultado;
 }
 
