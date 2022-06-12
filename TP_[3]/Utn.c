@@ -85,7 +85,7 @@ int isChar(char string[])
 
 	for(i = 0; i<stringTam; i++)
 	{
-		if((string[i] == ' ') && (string[i] < 'a' || string[i] > 'z') && (string[i] < 'A' || string[i] > 'Z'))
+		if((string[i] == ' ') && (string[i] < 'a' || string[i] > 'z') && (string[i] < 'A' || string[i] > 'Z') && (string[i] < '0' || string[i] > '9'))
 		{
 			isOk = -1;
 			break;

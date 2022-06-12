@@ -184,8 +184,7 @@ int Passenger_add(LinkedList* listaPasajeros, int* id)
 		{
 			auxiliarID = *id;
 			auxiliarID+=1;
-			//auxiliarID = Passenger_ObtenerMayorId(listaPasajeros);
-			//auxiliarID+=1;
+
 			printf("\nEl nuevo pasajero obtendra la ID: %d\n", auxiliarID);
 			if((!(utn_getString("\nIngrese el nombre: ","\nError, reingrese: ",50,3,auxiliarNombre)) &&
 				!(utn_getString("\nIngrese el apellido: ","\nError, reingrese: ",50,3,auxiliarApellido)) &&
@@ -202,7 +201,7 @@ int Passenger_add(LinkedList* listaPasajeros, int* id)
 				if(!Passenger_setVerifyInt(auxPasajero,auxiliarID,auxiliarNombre,auxiliarApellido,auxiliarPrecio,auxiliarCodigoVuelo,auxiliarTipoPasajero,auxiliarEstadoVuelo))
 				{
 					Passenger_printOnePassenger(auxPasajero);
-					utn_getString("\n¿Esta seguro que desea guardar este empleado?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,respuesta);
+					utn_getString("\n¿Esta seguro que desea guardar este pasajero?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,respuesta);
 
 					if(!(stricmp(respuesta,"si")))
 					{
@@ -220,7 +219,7 @@ int Passenger_add(LinkedList* listaPasajeros, int* id)
 			}
 		}else
 		{
-			printf("No hay espacio para un nuevo empleado");
+			printf("No hay espacio para un nuevo pasajero");
 		}
 	}
 
@@ -231,21 +230,23 @@ int Passenger_remove(LinkedList* listaPasajeros)
 {
 	int retorno = -1;
 	int id;
+	int len;
 	int index = -1;
 	char respuesta[4];
 	Passenger* aux = NULL;
 
 	if(listaPasajeros!=NULL)
 	{
+		len = ll_len(listaPasajeros);
 		Passenger_printList(listaPasajeros);
-		utn_getInt("Ingrese el ID para dar de baja: \n","Error, ID invalido\n",1,5000,3,&id);
+		utn_getInt("Ingrese el ID para dar de baja: \n","Error, ID invalido\n",1,len,3,&id);
 		index = Passenger_findID(listaPasajeros,id);
 
 		if(index!=-1)
 		{
 			aux = ll_get(listaPasajeros,index);
 			Passenger_printOnePassenger(aux);
-			utn_getString("\n¿Esta seguro que desea eliminar este empleado?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,respuesta);
+			utn_getString("\n¿Esta seguro que desea eliminar este pasajero?[si/no]\n","\nRespuesta invalida, ingrese [si/no]\n",4,3,respuesta);
 
 			if(!(stricmp(respuesta,"si")))
 			{
@@ -268,6 +269,7 @@ int Passenger_modify(LinkedList* listaPasajeros)
 {
 	int retorno = -1;
 	int id;
+	int len;
 	int index = -1;
 	char respuesta[4];
 	char confirmar[4];
@@ -277,8 +279,9 @@ int Passenger_modify(LinkedList* listaPasajeros)
 
 	if(listaPasajeros!=NULL)
 	{
+		len = ll_len(listaPasajeros);
 		Passenger_printList(listaPasajeros);
-		utn_getInt("Ingrese el ID para modificar\n","Error, ID invalido\n",1,5000,3,&id);
+		utn_getInt("Ingrese el ID para modificar\n","Error, ID invalido\n",1,len,3,&id);
 		index = Passenger_findID(listaPasajeros,id);
 
 		if(index!=-1)
@@ -363,8 +366,7 @@ int Passenger_printOnePassenger(Passenger* this)
 																,auxiliarTipoPasajero
 																,auxiliarEstadoVuelo);
 			retorno = 0;
-		}
-		else
+		}else
 		{
 			printf("Error para mostrar el Pasajero");
 		}
