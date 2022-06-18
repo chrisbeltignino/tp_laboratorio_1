@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
-
+#include "LinkedList.h"
 
 static Node* getNode(LinkedList* this, int nodeIndex);
 static int addNode(LinkedList* this, int nodeIndex, void* pElement);
@@ -57,13 +56,12 @@ int ll_len(LinkedList* this)
 static Node* getNode(LinkedList* this, int nodeIndex)
 {
 	Node* pNode = NULL;
-	int i;
 
 	if(this != NULL && nodeIndex >= 0 && nodeIndex < ll_len(this))
 	{
 		pNode = this->pFirstNode;
 
-		for(i=0; i<nodeIndex ;i++)
+		for(int i=0; i<nodeIndex ;i++)
 		{
 			pNode = pNode->pNextNode;
 		}
@@ -292,14 +290,9 @@ int ll_clear(LinkedList* this)
     	{
     		for(i=0; i<ll_len(this) ;i++)
     		{
-    			ll_remove(this,i);
+    			ll_remove(this,0);
     			returnAux = 0;
     		}
-    	}else
-    	{
-        	this->pFirstNode = NULL;
-        	this->size = 0;
-        	returnAux = 0;
     	}
     }
 
@@ -573,8 +566,6 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux = -1;
-    int i;
-    int j;
     int len;
     void* pElementI = NULL;
     void* pElementJ = NULL;
@@ -583,9 +574,9 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     {
     	len = ll_len(this);
 
-    	for(i=0; i<len-1 ;i++)
+    	for(int i=0; i<len-1 ;i++)
     	{
-    		for(j=i+1; j<len ;j++)
+    		for(int j=i+1; j<len ;j++)
     		{
     			pElementI = ll_get(this,i);
     			pElementJ = ll_get(this,j);
@@ -596,14 +587,12 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     				 ll_set(this,j,pElementI);
     				 returnAux = 0;
     			}else
-    			{
     				if(pFunc(pElementI,pElementJ)<=0 && order==0)
     				{
-    					ll_set(this,i,pElementJ);
-    					ll_set(this,j,pElementI);
-    					returnAux = 0;
+						ll_set(this,i,pElementJ);
+						ll_set(this,j,pElementI);
+						returnAux = 0;
     				}
-    			}
     		}
     	}
     }
