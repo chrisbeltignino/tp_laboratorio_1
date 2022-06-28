@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "inputs.h"
 
 int verificarConfirmacion(char* mensaje)
@@ -88,16 +84,21 @@ int pedirCaracter(char* caracter, char* mensaje)
 int isChar(char string[])
 {
 	int isOk = 0;
-	int i;
 	int stringTam = strlen(string);
 
-	for(i = 0; i<stringTam; i++)
+	if(stringTam == 0)
 	{
-		if((string[i] == ' ') && (string[i] < 'a' || string[i] > 'z') && (string[i] < 'A' || string[i] > 'Z'))
+		isOk = -1;
+	}else if(stringTam > 0)
 		{
-			isOk = -1;
-			break;
-		}
+			for(int i = 0; i<stringTam; i++)
+			{
+				if((isdigit(string[i]) == 1) || (isalpha(string[i]) == 0))
+				{
+					isOk = -1;
+					break;
+				}
+			}
 	}
 
 	return isOk;
@@ -214,8 +215,10 @@ int utn_getInt(int* input, char mensaje[], char mensajeError[], int min, int max
 	   {
 			reintentos--;
 			printf("%s", mensaje);
+			fflush(stdin);
 			if(!(getInt(&auxInt)) && auxInt >= min && auxInt <= max)
 			{
+				fflush(stdin);
 				*input= auxInt;
 				isOk = 0;
 				break;
